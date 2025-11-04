@@ -6,23 +6,26 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
+
         stage('Security Scan') {
             steps {
-                sh 'echo "Running Gitleaks..."'
-                sh 'echo "Running SonarQube analysis..."'
-                sh 'echo "Running Trivy scan..."'
+                bat 'echo Running Gitleaks...'
+                bat 'echo Running SonarQube analysis...'
+                bat 'echo Running Trivy scan...'
             }
         }
+
         stage('Docker Build & Deploy') {
             steps {
-                sh 'echo "Building Docker image..."'
-                sh 'echo "Pushing image to Docker Hub..."'
-                sh 'echo "Deploying using Docker Compose..."'
+                bat 'echo Building Docker image...'
+                bat 'echo Pushing image to Docker Hub...'
+                bat 'echo Deploying using Docker Compose...'
             }
         }
     }
